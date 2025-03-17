@@ -1,0 +1,248 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "webAPIreact",
+    "version": "1.0"
+  },
+  "paths": {
+    "/ws/camera": {
+      "get": {
+        "tags": [
+          "CameraWebSocket"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/My/getProduction": {
+      "get": {
+        "tags": [
+          "My"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Production"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Production"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Production"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/My/getUsers": {
+      "get": {
+        "tags": [
+          "My"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Users"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Users"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Users"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/My": {
+      "post": {
+        "tags": [
+          "My"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Production"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Production"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Production"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Production"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Production"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Production"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Production": {
+        "required": [
+          "id_prod"
+        ],
+        "type": "object",
+        "properties": {
+          "id_prod": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "project": {
+            "type": "string",
+            "nullable": true
+          },
+          "so": {
+            "type": "string",
+            "nullable": true
+          },
+          "device": {
+            "type": "string",
+            "nullable": true
+          },
+          "codea": {
+            "type": "string",
+            "nullable": true
+          },
+          "codeb": {
+            "type": "string",
+            "nullable": true
+          },
+          "codepr": {
+            "type": "string",
+            "nullable": true
+          },
+          "codedr": {
+            "type": "string",
+            "nullable": true
+          },
+          "codeps": {
+            "type": "string",
+            "nullable": true
+          },
+          "type0": {
+            "type": "string",
+            "nullable": true
+          },
+          "type1": {
+            "type": "string",
+            "nullable": true
+          },
+          "type2": {
+            "type": "string",
+            "nullable": true
+          },
+          "type3": {
+            "type": "string",
+            "nullable": true
+          },
+          "type4": {
+            "type": "string",
+            "nullable": true
+          },
+          "readyPQA": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Users": {
+        "required": [
+          "idusers"
+        ],
+        "type": "object",
+        "properties": {
+          "idusers": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "fullname": {
+            "type": "string",
+            "nullable": true
+          },
+          "admin": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "role": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
