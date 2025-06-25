@@ -5,56 +5,6 @@
     "version": "1.0"
   },
   "paths": {
-    "/ws/camera": {
-      "get": {
-        "tags": [
-          "CameraWebSocket"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/My/getProduction": {
-      "get": {
-        "tags": [
-          "My"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Production"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Production"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Production"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/My/getUsers": {
       "get": {
         "tags": [
@@ -93,7 +43,76 @@
         }
       }
     },
-    "/api/My": {
+    "/api/My/getUser": {
+      "get": {
+        "tags": [
+          "My"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Users"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Users"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Users"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/My/fetchProjects": {
+      "post": {
+        "tags": [
+          "My"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/My/fetchSO": {
       "post": {
         "tags": [
           "My"
@@ -119,24 +138,196 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Production"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Production"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Production"
-                }
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/My/fetchEquipments": {
+      "post": {
+        "tags": [
+          "My"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Production"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Production"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Production"
               }
             }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/My/fetchProduction": {
+      "post": {
+        "tags": [
+          "My"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Production"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Production"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Production"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/My/newProduction": {
+      "post": {
+        "tags": [
+          "My"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Production"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Production"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Production"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/My/delProd": {
+      "post": {
+        "tags": [
+          "My"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/My/newProjects1": {
+      "post": {
+        "tags": [
+          "My"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Projects"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Projects"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Projects"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/My/newSO": {
+      "post": {
+        "tags": [
+          "My"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/So"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/So"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/So"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }
@@ -145,9 +336,6 @@
   "components": {
     "schemas": {
       "Production": {
-        "required": [
-          "id_prod"
-        ],
         "type": "object",
         "properties": {
           "id_prod": {
@@ -162,27 +350,27 @@
             "type": "string",
             "nullable": true
           },
-          "device": {
+          "equipment": {
             "type": "string",
             "nullable": true
           },
-          "codea": {
+          "codeA": {
             "type": "string",
             "nullable": true
           },
-          "codeb": {
+          "codeB": {
             "type": "string",
             "nullable": true
           },
-          "codepr": {
+          "codePR": {
             "type": "string",
             "nullable": true
           },
-          "codedr": {
+          "codeDR": {
             "type": "string",
             "nullable": true
           },
-          "codeps": {
+          "codePS": {
             "type": "string",
             "nullable": true
           },
@@ -207,6 +395,62 @@
             "nullable": true
           },
           "readyPQA": {
+            "type": "string",
+            "nullable": true
+          },
+          "tester": {
+            "type": "string",
+            "nullable": true
+          },
+          "startDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "endDate": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Projects": {
+        "type": "object",
+        "properties": {
+          "id_proj": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "project": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "nullable": true
+          },
+          "proj_manager": {
+            "type": "string",
+            "nullable": true
+          },
+          "client_name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "So": {
+        "type": "object",
+        "properties": {
+          "idSO": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sOref": {
+            "type": "string",
+            "nullable": true
+          },
+          "project": {
             "type": "string",
             "nullable": true
           }

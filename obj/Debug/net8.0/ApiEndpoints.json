@@ -1,21 +1,95 @@
 [
   {
     "ContainingType": "webAPIreact.Controllers.MyController",
-    "Method": "PostMyEntity",
-    "RelativePath": "api/My",
+    "Method": "DeleteProduction",
+    "RelativePath": "api/My/delProd",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "myProd",
+        "Name": "id_prod",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "FetchEquipments",
+    "RelativePath": "api/My/fetchEquipments",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "prod",
         "Type": "webAPIreact.Models.Production",
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "FetchProduction",
+    "RelativePath": "api/My/fetchProduction",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "prod",
+        "Type": "webAPIreact.Models.Production",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "FetchProjects",
+    "RelativePath": "api/My/fetchProjects",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "project",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "FetchSO",
+    "RelativePath": "api/My/fetchSO",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "prod",
+        "Type": "webAPIreact.Models.Production",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "GetMyUsers",
+    "RelativePath": "api/My/getUser",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "webAPIreact.Models.Production",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[webAPIreact.Models.Users, webAPIreact, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -28,26 +102,6 @@
   {
     "ContainingType": "webAPIreact.Controllers.MyController",
     "Method": "GetMyProduction",
-    "RelativePath": "api/My/getProduction",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[webAPIreact.Models.Production, webAPIreact, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "webAPIreact.Controllers.MyController",
-    "Method": "GetMyUsers",
     "RelativePath": "api/My/getUsers",
     "HttpMethod": "GET",
     "IsController": true,
@@ -66,19 +120,51 @@
     ]
   },
   {
-    "ContainingType": "CameraWebSocketController",
-    "Method": "Get",
-    "RelativePath": "ws/camera",
-    "HttpMethod": "GET",
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "NewProduction",
+    "RelativePath": "api/My/newProduction",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
+    "Parameters": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
+        "Name": "prod1",
+        "Type": "webAPIreact.Models.Production",
+        "IsRequired": true
       }
-    ]
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "NewProjectC",
+    "RelativePath": "api/My/newProjects1",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "proj",
+        "Type": "webAPIreact.Models.Projects",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "NewSO",
+    "RelativePath": "api/My/newSO",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "so1",
+        "Type": "webAPIreact.Models.So",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]
