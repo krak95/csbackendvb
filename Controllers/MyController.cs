@@ -286,7 +286,7 @@ namespace webAPIreact.Controllers
             try
             {
                 var results = await _context.ProductionResults.FromSqlRaw(
-                    "CALL fetchProduction({0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13})",
+                    "CALL fetchProduction({0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14})",
                     prod.Project,
                     prod.So,
                     prod.Equipment,
@@ -300,8 +300,62 @@ namespace webAPIreact.Controllers
                     prod.Type2,
                     prod.Type3,
                     prod.Type4,
-                    prod.Tester).ToListAsync();
+                    prod.Tester,
+                    prod.Status).ToListAsync();
                 return Ok(results); // ✅ Return success message
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error: " + ex.Message }); // Return detailed error
+            }
+        }
+
+        [HttpPost("checkProduction")]
+        public async Task<IActionResult> CheckProduction([FromBody] Production prod)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);  // Return validation errors
+            }
+            try
+            {
+                var results = await _context.ProductionResults.FromSqlRaw(
+                    "CALL checkProduction({0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12})",
+                    prod.Project,
+                    prod.So,
+                    prod.Equipment,
+                    prod.CodeA,
+                    prod.CodeB,
+                    prod.CodePR,
+                    prod.CodeDR,
+                    prod.CodePS,
+                    prod.Type0,
+                    prod.Type1,
+                    prod.Type2,
+                    prod.Type3,
+                    prod.Type4).ToListAsync();
+                return Ok(results); // ✅ Return success message
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error: " + ex.Message }); // Return detailed error
+            }
+        }
+
+        [HttpPost("updateStatus")]
+        public async Task<IActionResult> UpdateStatus([FromBody] Production prod1)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);  // Return validation errors
+            }
+            try
+            {
+                _ = await _context.Database.ExecuteSqlRawAsync(
+                    "CALL updateStatus({0},{1})",
+                    prod1.Id_prod,
+                    prod1.Status);
+                return Ok(new { message = "Production inserted successfully" }); // Return success message
             }
             catch (Exception ex)
             {

@@ -22,7 +22,7 @@ public class Program
         {
             options.AddPolicy("AllowReactApp", policy =>
             policy.AllowAnyOrigin()
-            .WithOrigins("http://localhost:3000")
+            .WithOrigins("http://localhost:3000","http://10.76.76.44:3000")
             .AllowAnyMethod()
             .AllowAnyHeader()
             );
