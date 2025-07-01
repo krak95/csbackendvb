@@ -243,8 +243,12 @@ namespace webAPIreact.Controllers
             try
             {
                 var results = await _context.ProjectsResults.FromSqlRaw(
-                    "CALL fetchProjects({0})",
-                    proj.Project).ToListAsync();
+                    "CALL fetchProjects({0},{1},{2},{3})",
+                    proj.Project,
+                    proj.Country,
+                    proj.Proj_manager,
+                    proj.Client_name
+                    ).ToListAsync();
                 return Ok(results); // Return success message
             }
             catch (Exception ex)
@@ -320,20 +324,8 @@ namespace webAPIreact.Controllers
             try
             {
                 var results = await _context.ProductionResults.FromSqlRaw(
-                    "CALL checkProduction({0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12})",
-                    prod.Project,
-                    prod.So,
-                    prod.Equipment,
-                    prod.CodeA,
-                    prod.CodeB,
-                    prod.CodePR,
-                    prod.CodeDR,
-                    prod.CodePS,
-                    prod.Type0,
-                    prod.Type1,
-                    prod.Type2,
-                    prod.Type3,
-                    prod.Type4).ToListAsync();
+                    "CALL checkProduction({0})",
+                    prod.Id_prod).ToListAsync();
                 return Ok(results); // ✅ Return success message
             }
             catch (Exception ex)
@@ -504,9 +496,10 @@ namespace webAPIreact.Controllers
             try
             {
                 var result = await _context.IssuesResults.FromSqlRaw(
-                    "CALL fetchIssues({0},{1})",
+                    "CALL fetchIssues({0},{1},{2})",
                     issue.Ref_issue,
-                    issue.Description_issue
+                    issue.Description_issue,
+                    issue.Level_issue
                     ).ToListAsync();
 
                 return Ok(result);
@@ -530,7 +523,8 @@ namespace webAPIreact.Controllers
                      "CALL addItemIssue({0},{1},{2})",
                      itemissue.Id_issue,
                      itemissue.Id_item,
-                     itemissue.Comment
+                     itemissue.Comment,
+                     itemissue.Issue_status
                      );
                 return Ok(new { message = "Item Issue assigned successfully" });
             }
@@ -563,6 +557,29 @@ namespace webAPIreact.Controllers
             }
         }
 
+        [HttpPost("updateItemIssues")]
+        public async Task<IActionResult> UpdateItemIssue([FromBody] ItemIssues ii)
+        {
+            Console.WriteLine($"ID_ITEM:{ii.Id_item}");
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                var result = await _context.Database.ExecuteSqlRawAsync(
+                    "CALL updateItemIssues({0},{1})",
+                    ii.Iditem_issues,
+                    ii.Issue_status
+                    );
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error" + ex.Message });
+            }
+        }
 
     }
 }

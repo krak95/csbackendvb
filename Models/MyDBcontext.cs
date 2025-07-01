@@ -27,6 +27,7 @@ namespace webAPIreact.Models
 
     }
 
+    //MYSQL TABLES
     [Table("Login")]
     public class Login
     {
@@ -104,29 +105,7 @@ namespace webAPIreact.Models
         public int Idequipments { get; set; }
         public string? EquipName { get; set; }
     }
-    public static class JwtTokenHelper
-    {
-        public static string GenerateToken(string username, string key)
-        {
-            var tokenHandler = new System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler();
-            var keyBytes = Encoding.UTF8.GetBytes(key);
 
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(new[] {
-                new Claim(ClaimTypes.Name, username)
-            }),
-                Expires = DateTime.UtcNow.AddHours(1),
-                SigningCredentials = new SigningCredentials(
-                    new SymmetricSecurityKey(keyBytes),
-                    SecurityAlgorithms.HmacSha256Signature
-                )
-            };
-
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            return tokenHandler.WriteToken(token);
-        }
-    }
     [Table("Issues")]
     public class Issues
     {
@@ -145,9 +124,37 @@ namespace webAPIreact.Models
         public int? Id_issue { get; set; }
         public int? Id_item { get; set; }
         public string? Comment { get;set; }
+        public string? Issue_status { get; set; }  
         public string? Ref_issue { get; set; }
         public string? Description_issue { get;set; }
         public string? Level_issue { get; private set; }
 
+    }
+
+}
+
+
+// JWT TOKEN
+public static class JwtTokenHelper
+{
+    public static string GenerateToken(string username, string key)
+    {
+        var tokenHandler = new System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler();
+        var keyBytes = Encoding.UTF8.GetBytes(key);
+
+        var tokenDescriptor = new SecurityTokenDescriptor
+        {
+            Subject = new ClaimsIdentity(new[] {
+                new Claim(ClaimTypes.Name, username)
+            }),
+            Expires = DateTime.UtcNow.AddHours(1),
+            SigningCredentials = new SigningCredentials(
+                new SymmetricSecurityKey(keyBytes),
+                SecurityAlgorithms.HmacSha256Signature
+            )
+        };
+
+        var token = tokenHandler.CreateToken(tokenDescriptor);
+        return tokenHandler.WriteToken(token);
     }
 }
