@@ -581,5 +581,28 @@ namespace webAPIreact.Controllers
             }
         }
 
+        [HttpPost("deleteItemIssues")]
+        public async Task<IActionResult> DeleteItemIssues([FromBody] ItemIssues ii)
+        {
+            Console.WriteLine($"ID_ITEM:{ii.Id_item}");
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                var result = await _context.Database.ExecuteSqlRawAsync(
+                    "CALL deleteItemIssues({0})",
+                    ii.Iditem_issues
+                    );
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error" + ex.Message });
+            }
+        }
+
     }
 }
