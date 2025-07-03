@@ -344,9 +344,10 @@ namespace webAPIreact.Controllers
             try
             {
                 _ = await _context.Database.ExecuteSqlRawAsync(
-                    "CALL updateStatus({0},{1})",
+                    "CALL updateStatus({0},{1},{2})",
                     prod1.Id_prod,
-                    prod1.Status);
+                    prod1.Status,
+                    prod1.EndDate);
                 return Ok(new { message = "Production inserted successfully" }); // Return success message
             }
             catch (Exception ex)
@@ -391,7 +392,7 @@ namespace webAPIreact.Controllers
         }
 
         [HttpPost("delProd")]
-        public async Task<IActionResult> DeleteProduction([FromBody] int id_prod)
+        public async Task<IActionResult> DeleteProduction([FromBody] Production prod)
         {
             //Console.WriteLine($"Deleting production with ID: {id_prod}"); // or use logging
             if (!ModelState.IsValid)
@@ -401,8 +402,9 @@ namespace webAPIreact.Controllers
             try
             {
                 _ = await _context.Database.ExecuteSqlRawAsync(
-                    "CALL delProd({0})",
-                    id_prod);
+                    "CALL delProd({0},{1})",
+                    prod.Id_prod,
+                    prod.Tester);
                 return Ok(new { message = "Production deleted successfully" }); // Return success message
             }
             catch (Exception ex)
