@@ -21,11 +21,13 @@ namespace webAPIreact.Models
         public DbSet<Equipments> EquipsResults { get; set; }
         public DbSet<Users> UsersRegister { get; set; }
         public DbSet<Login> LoginResults { get; set; } 
-
         public DbSet<Issues> IssuesResults { get; set; }
         public DbSet<ItemIssues> ItemIssuesResults { get; set; }
+        public DbSet<UsersFetch> UsersFetchResults{ get; set; }
 
-    }
+        public DbSet<Roles> RolesResults { get; set; }
+
+}
 
     //MYSQL TABLES
     [Table("Login")]
@@ -37,6 +39,16 @@ namespace webAPIreact.Models
         public string? Token { get; set; }
         public string? Fullname { get; set; }
         public string? LogDate { get; set; }
+        public string? Role { get; set; }
+        public int? Admin { get; set; }
+    }
+
+    [Table("Roles")]
+    public class Roles
+    {
+        [Key]
+        public int Id_roles { get; set; }
+        public string? Rolename  { get; set; }
     }
 
     [Table("Production")]
@@ -63,7 +75,6 @@ namespace webAPIreact.Models
             public string? StartDate { get; set; }
             public string? EndDate { get; set; }
             public string? Status { get; set; } 
-
     }
   
     [Table("Users")]
@@ -73,6 +84,14 @@ namespace webAPIreact.Models
         public int Idusers { get; set; }
         public string? Username { get; set; }
         public string? Password { get; set; }
+        public string? Fullname { get; set; }
+        public int? Admin { get; set; }
+        public string? Role { get; set; }
+    }
+    public class UsersFetch
+    {
+        [Key]
+        public int Idusers { get; set; }
         public string? Fullname { get; set; }
         public int? Admin { get; set; }
         public string? Role { get; set; }

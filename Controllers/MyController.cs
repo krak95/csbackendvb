@@ -49,6 +49,68 @@ namespace webAPIreact.Controllers
             }
         }
 
+        [HttpPost("fetchUsers")]
+        public async Task<IActionResult> FetchUsers([FromBody] UsersFetch user)
+        {
+            //Console.WriteLine($"{equips.EquipName}");
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);  // Return validation errors
+            }
+
+            try
+            {
+                var results = await _context.UsersFetchResults.FromSqlRaw(
+                    "CALL fetchUsers({0})", user.Fullname).ToListAsync();
+                return Ok(results); // Return success message
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error: " + ex.Message }); // Return detailed error
+            }
+        }
+        [HttpPost("fetchRoles")]
+        public async Task<IActionResult> FetchRoles([FromBody] Roles role)
+        {
+            //Console.WriteLine($"{equips.EquipName}");
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);  // Return validation errors
+            }
+
+            try
+            {
+                var results = await _context.RolesResults.FromSqlRaw(
+                    "CALL fetchRoles({0})", role.Rolename).ToListAsync();
+                return Ok(results); // Return success message
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error: " + ex.Message }); // Return detailed error
+            }
+        }
+        [HttpPost("assignRoles")]
+        public async Task<IActionResult> AssignRoles([FromBody] Users user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                _ = await _context.Database.ExecuteSqlRawAsync(
+                     "CALL assignRoles({0},{1})",
+                     user.Fullname,
+                     user.Role
+                     );
+                return Ok(new { message = "Role updated inserted successfully" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error" + ex.Message });
+            }
+        }
+
         [HttpPost("Register")]
         public async Task<IActionResult> NewUsers([FromBody] Users user)
         {
@@ -103,7 +165,7 @@ namespace webAPIreact.Controllers
                 var hashResult = _passwordHasher.VerifyHashedPassword(user, results[0].Password,user.Password);
                 if (hashResult == PasswordVerificationResult.Success)
                 {
-                    return Ok(results[0].Fullname);
+                    return Ok(results[0]);
                 }
                 else
                 {
@@ -151,10 +213,12 @@ namespace webAPIreact.Controllers
             }
             try
             {
-                var results = await _context.Database.ExecuteSqlRawAsync("CALL updateLogin({0},{1},{2})",
+                var results = await _context.Database.ExecuteSqlRawAsync("CALL updateLogin({0},{1},{2},{3},{4})",
                     log.Username,
                     token,
-                    log.LogDate
+                    log.LogDate,
+                    log.Role,
+                    log.Admin
                     );
                 //Console.WriteLine($"{log.Username} {token}");
                 return Ok(token);
@@ -179,11 +243,13 @@ namespace webAPIreact.Controllers
             try
             {
                 _ = await _context.Database.ExecuteSqlRawAsync(
-                     "CALL newLogin({0},{1},{2},{3})",
+                     "CALL newLogin({0},{1},{2},{3},{4},{5})",
                      user.Username,
                      token,
                      user.Fullname,
-                     user.LogDate
+                     user.LogDate,
+                     user.Role,
+                     user.Admin
                      );
                 return Ok(token);
             }
@@ -605,6 +671,8 @@ namespace webAPIreact.Controllers
                 return BadRequest(new { message = "Error" + ex.Message });
             }
         }
+
+        
 
     }
 }
