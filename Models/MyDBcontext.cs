@@ -24,7 +24,6 @@ namespace webAPIreact.Models
         public DbSet<Issues> IssuesResults { get; set; }
         public DbSet<ItemIssues> ItemIssuesResults { get; set; }
         public DbSet<UsersFetch> UsersFetchResults{ get; set; }
-
         public DbSet<Roles> RolesResults { get; set; }
 
 }

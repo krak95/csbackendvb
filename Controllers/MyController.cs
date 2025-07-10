@@ -460,18 +460,20 @@ namespace webAPIreact.Controllers
         [HttpPost("delProd")]
         public async Task<IActionResult> DeleteProduction([FromBody] Production prod)
         {
-            //Console.WriteLine($"Deleting production with ID: {id_prod}"); // or use logging
+            Console.WriteLine($"Deleting production with ID: {prod.Id_prod},{prod.Tester}"); // or use logging
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);  // Return validation errors
             }
             try
             {
-                _ = await _context.Database.ExecuteSqlRawAsync(
+                var result = await _context.Database.ExecuteSqlRawAsync(
                     "CALL delProd({0},{1})",
                     prod.Id_prod,
                     prod.Tester);
-                return Ok(new { message = "Production deleted successfully" }); // Return success message
+
+                
+                return Ok(result); // Return success message
             }
             catch (Exception ex)
             {
