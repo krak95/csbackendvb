@@ -259,7 +259,7 @@ namespace webAPIreact.Controllers
             }
         }
         [HttpPost("newEquipments")]
-        public async Task<IActionResult> FetchEquipments([FromBody] Equipments equip)
+        public async Task<IActionResult> NewEquipments([FromBody] Equipments equip)
         {
             if (!ModelState.IsValid)
             {
@@ -280,7 +280,7 @@ namespace webAPIreact.Controllers
         }
 
         [HttpPost("fetchEquipments")]
-        public async Task<IActionResult> FetchProjects([FromBody] Equipments equips)
+        public async Task<IActionResult> FetchEquipments([FromBody] Equipments equips)
         {
             //Console.WriteLine($"{equips.EquipName}");
             if (!ModelState.IsValid)
@@ -481,6 +481,92 @@ namespace webAPIreact.Controllers
             }
         }
 
+        [HttpPost("deleteProject")]
+        public async Task<IActionResult> DeleteProject([FromBody] Projects proj)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                var result = await _context.Database.ExecuteSqlRawAsync(
+                    "CALL deleteProject({0})",
+                    proj.Id_proj
+                    );
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error" + ex.Message });
+            }
+        }
+
+        [HttpPost("deleteSO")]
+        public async Task<IActionResult> DeleteSO([FromBody] So so)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                var result = await _context.Database.ExecuteSqlRawAsync(
+                    "CALL delSO({0})",
+                    so.IdSO
+                    );
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error" + ex.Message });
+            }
+        }
+        [HttpPost("delEquip")]
+        public async Task<IActionResult> DeleteEquip([FromBody] Equipments equip)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                var result = await _context.Database.ExecuteSqlRawAsync(
+                    "CALL delEquip({0})",
+                    equip.Idequipments
+                    );
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error" + ex.Message });
+            }
+        }
+
+        [HttpPost("delIssues")]
+        public async Task<IActionResult> DeleteEquip([FromBody] Issues issue)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                var result = await _context.Database.ExecuteSqlRawAsync(
+                    "CALL delIssues({0})",
+                    issue.Id_issues
+                    );
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error" + ex.Message });
+            }
+        }
         [HttpPost("newProjects1")]
         public async Task<IActionResult> NewProjectC([FromBody] Projects proj)
         {
