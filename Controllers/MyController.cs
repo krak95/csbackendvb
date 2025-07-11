@@ -28,116 +28,7 @@ namespace webAPIreact.Controllers
             _passwordHasher = passwordHasher;
         }
 
-        [HttpPost("Logout")]
-        public async Task<IActionResult> Logout([FromBody] Login log)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            try
-            {
-                _ = await _context.Database.ExecuteSqlRawAsync(
-                     "CALL logout({0})",
-                     log.Username
-                     );
-                return Ok(new { message = "Logged out successfully" });
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { message = "Error" + ex.Message });
-            }
-        }
-
-        [HttpPost("fetchUsers")]
-        public async Task<IActionResult> FetchUsers([FromBody] UsersFetch user)
-        {
-            //Console.WriteLine($"{equips.EquipName}");
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);  // Return validation errors
-            }
-
-            try
-            {
-                var results = await _context.UsersFetchResults.FromSqlRaw(
-                    "CALL fetchUsers({0})", user.Fullname).ToListAsync();
-                return Ok(results); // Return success message
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { message = "Error: " + ex.Message }); // Return detailed error
-            }
-        }
-        [HttpPost("fetchRoles")]
-        public async Task<IActionResult> FetchRoles([FromBody] Roles role)
-        {
-            //Console.WriteLine($"{equips.EquipName}");
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);  // Return validation errors
-            }
-
-            try
-            {
-                var results = await _context.RolesResults.FromSqlRaw(
-                    "CALL fetchRoles({0})", role.Rolename).ToListAsync();
-                return Ok(results); // Return success message
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { message = "Error: " + ex.Message }); // Return detailed error
-            }
-        }
-        [HttpPost("assignRoles")]
-        public async Task<IActionResult> AssignRoles([FromBody] Users user)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            try
-            {
-                _ = await _context.Database.ExecuteSqlRawAsync(
-                     "CALL assignRoles({0},{1})",
-                     user.Fullname,
-                     user.Role
-                     );
-                return Ok(new { message = "Role updated inserted successfully" });
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { message = "Error" + ex.Message });
-            }
-        }
-
-        [HttpPost("Register")]
-        public async Task<IActionResult> NewUsers([FromBody] Users user)
-        {
-            var hashedPw = _passwordHasher.HashPassword(user, user.Password);
-            //Console.WriteLine($"{user.Fullname},{user.Admin},{user.Role},{user.Username},{hashedPw}");
-
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            try
-            {
-                _ = await _context.Database.ExecuteSqlRawAsync(
-                     "CALL registerUser({0},{1},{2},{3},{4})",
-                     user.Fullname,
-                     user.Admin,
-                     user.Role,
-                     user.Username,
-                     hashedPw
-                     );
-                return Ok(new { message = "User inserted successfully" });
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { message = "Error" + ex.Message });
-            }
-        }
+        //CREATE//
 
         [HttpPost("checkCreds")]
         public async Task<IActionResult> CheckCreds([FromBody] Users user)
@@ -162,7 +53,7 @@ namespace webAPIreact.Controllers
                 //    }
                 //}
 
-                var hashResult = _passwordHasher.VerifyHashedPassword(user, results[0].Password,user.Password);
+                var hashResult = _passwordHasher.VerifyHashedPassword(user, results[0].Password, user.Password);
                 if (hashResult == PasswordVerificationResult.Success)
                 {
                     return Ok(results[0]);
@@ -187,14 +78,14 @@ namespace webAPIreact.Controllers
             }
             try
             {
-            var results = await _context.LoginResults.FromSqlRaw("CALL fetchLogin({0},{1})",
-                log.Username,
-                log.Token
-                ).ToListAsync();
-                 //Console.WriteLine($"{log.Username} {log.Token}");  
-                return Ok(results); 
+                var results = await _context.LoginResults.FromSqlRaw("CALL fetchLogin({0},{1})",
+                    log.Username,
+                    log.Token
+                    ).ToListAsync();
+                //Console.WriteLine($"{log.Username} {log.Token}");  
+                return Ok(results);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(new { message = "Error: " + ex.Message }); // Return detailed error
             }
@@ -258,6 +149,122 @@ namespace webAPIreact.Controllers
                 return BadRequest(new { message = "Error" + ex });
             }
         }
+
+        [HttpPost("Register")]
+        public async Task<IActionResult> NewUsers([FromBody] Users user)
+        {
+            var hashedPw = _passwordHasher.HashPassword(user, user.Password);
+            //Console.WriteLine($"{user.Fullname},{user.Admin},{user.Role},{user.Username},{hashedPw}");
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                _ = await _context.Database.ExecuteSqlRawAsync(
+                     "CALL registerUser({0},{1},{2},{3},{4})",
+                     user.Fullname,
+                     user.Admin,
+                     user.Role,
+                     user.Username,
+                     hashedPw
+                     );
+                return Ok(new { message = "User inserted successfully" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error" + ex.Message });
+            }
+        }
+        [HttpPost("Logout")]
+        public async Task<IActionResult> Logout([FromBody] Login log)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                _ = await _context.Database.ExecuteSqlRawAsync(
+                     "CALL logout({0})",
+                     log.Username
+                     );
+                return Ok(new { message = "Logged out successfully" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error" + ex.Message });
+            }
+        }
+
+        //USERS
+
+        [HttpPost("fetchUsers")]
+        public async Task<IActionResult> FetchUsers([FromBody] UsersFetch user)
+        {
+            //Console.WriteLine($"{equips.EquipName}");
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);  // Return validation errors
+            }
+
+            try
+            {
+                var results = await _context.UsersFetchResults.FromSqlRaw(
+                    "CALL fetchUsers({0})", user.Fullname).ToListAsync();
+                return Ok(results); // Return success message
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error: " + ex.Message }); // Return detailed error
+            }
+        }
+        [HttpPost("fetchRoles")]
+        public async Task<IActionResult> FetchRoles([FromBody] Roles role)
+        {
+            //Console.WriteLine($"{equips.EquipName}");
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);  // Return validation errors
+            }
+
+            try
+            {
+                var results = await _context.RolesResults.FromSqlRaw(
+                    "CALL fetchRoles({0})", role.Rolename).ToListAsync();
+                return Ok(results); // Return success message
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error: " + ex.Message }); // Return detailed error
+            }
+        }
+        [HttpPost("assignRoles")]
+        public async Task<IActionResult> AssignRoles([FromBody] Users user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                _ = await _context.Database.ExecuteSqlRawAsync(
+                     "CALL assignRoles({0},{1})",
+                     user.Fullname,
+                     user.Role
+                     );
+                return Ok(new { message = "Role updated inserted successfully" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error" + ex.Message });
+            }
+        }
+
+        //PRODUCTION
+
+
         [HttpPost("newEquipments")]
         public async Task<IActionResult> NewEquipments([FromBody] Equipments equip)
         {
@@ -724,9 +731,10 @@ namespace webAPIreact.Controllers
             try
             {
                 var result = await _context.Database.ExecuteSqlRawAsync(
-                    "CALL updateItemIssues({0},{1})",
+                    "CALL updateItemIssues({0},{1},{2})",
                     ii.Iditem_issues,
-                    ii.Issue_status
+                    ii.Issue_status,
+                    ii.Action
                     );
 
                 return Ok(result);

@@ -147,6 +147,7 @@ namespace webAPIreact.Models
         public string? Description_issue { get;set; }
         public string? Level_issue { get; private set; }
 
+        public string? Action { get; set; } 
     }
 
 }
