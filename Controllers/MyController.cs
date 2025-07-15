@@ -30,7 +30,6 @@ namespace webAPIreact.Controllers
 
 //LOGIN//
 
-
         [HttpPost("checkCreds")]
         public async Task<IActionResult> CheckCreds([FromBody] Users user)
         {
@@ -484,7 +483,7 @@ namespace webAPIreact.Controllers
             try
             {
                 var results = await _context.ProductionResults.FromSqlRaw(
-                    "CALL fetchProduction({0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14})",
+                    "CALL fetchProduction({0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15})",
                     prod.Project,
                     prod.So,
                     prod.Equipment,
@@ -499,7 +498,8 @@ namespace webAPIreact.Controllers
                     prod.Type3,
                     prod.Type4,
                     prod.Tester,
-                    prod.Status).ToListAsync();
+                    prod.Status,
+                    prod.Ww_number).ToListAsync();
                 return Ok(results); // ✅ Return success message
             }
             catch (Exception ex)
@@ -560,7 +560,7 @@ namespace webAPIreact.Controllers
             try
             {
                 _ = await _context.Database.ExecuteSqlRawAsync(
-                    "CALL newItem({0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15})",
+                    "CALL newItem({0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16},{17},{18})",
                     prod1.Project,
                     prod1.So,
                     prod1.Equipment,
@@ -576,7 +576,10 @@ namespace webAPIreact.Controllers
                     prod1.Type4,
                     prod1.Tester,
                     prod1.StartDate,
-                    prod1.EndDate);
+                    prod1.EndDate,
+                    prod1.HipotValue,
+                    prod1.HipotModel,
+                    prod1.HipotMultimeterModel);
                 return Ok(new { message = "Production inserted successfully" }); // Return success message
             }
             catch (Exception ex)
@@ -777,7 +780,100 @@ namespace webAPIreact.Controllers
             }
         }
 
-        
+        //JOBS//
+        [HttpPost("addJob")]
+        public async Task<IActionResult> AddJob([FromBody] Jobs job)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                var result = await _context.Database.ExecuteSqlRawAsync(
+                    "CALL addJob({0},{1},{2},{3},{4})",
+                    job.Equipment,
+                    job.Model,
+                    job.QuantityNeed,
+                    job.JobNumber,
+                    job.JobProject
+                    );
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error" + ex.Message });
+            }
+        }
+        [HttpPost("fetchJobs")]
+        public async Task<IActionResult> FetchJobs([FromBody] Jobs job)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                var result = await _context.JobsResults.FromSqlRaw(
+                    "CALL fetchJobs({0},{1},{2},{3},{4})",
+                    job.Equipment,
+                    job.Model,
+                    job.JobNumber,
+                    job.JobProject,
+                    job.JobDone
+                    ).ToListAsync();
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error" + ex.Message });
+            }
+        }
+
+
+        //WORKWEEKS
+        [HttpPost("fetchWorkWeeks")]
+        public async Task<IActionResult> FetchWorkWeeks([FromBody] WorkWeeks ww)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                var result = await _context.WorkWeeksResults.FromSqlRaw(
+                    "CALL fetchWorkWeeks({0})",
+                    ww.Ww_number
+                    ).ToListAsync();
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error" + ex.Message });
+            }
+        }
+        [HttpPost("fetchWorkWeeksNR")]
+        public async Task<IActionResult> FetchWorkWeeksNR()
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                var result = await _context.WorkWeeksNRResults.FromSqlRaw(
+                    "CALL fetchWorkWeeksNR").ToListAsync();
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error" + ex.Message });
+            }
+        }
 
     }
 }

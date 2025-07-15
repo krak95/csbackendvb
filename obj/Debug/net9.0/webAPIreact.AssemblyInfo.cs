@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("webAPIreact")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+41084770fa063a948a67c972d43a9880942f0533")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ec3ed8fc42a9e5bb30f6b7c05b0108598172f0a6")]
 [assembly: System.Reflection.AssemblyProductAttribute("webAPIreact")]
 [assembly: System.Reflection.AssemblyTitleAttribute("webAPIreact")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

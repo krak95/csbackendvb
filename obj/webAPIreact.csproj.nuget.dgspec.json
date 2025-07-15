@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jamorim\\source\\repos\\webAPIreact\\webAPIreact\\webAPIreact.csproj": {}
+    "C:\\Users\\jamorim\\source\\repos\\webAPIreact\\webapireact\\webAPIreact.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jamorim\\source\\repos\\webAPIreact\\webAPIreact\\webAPIreact.csproj": {
+    "C:\\Users\\jamorim\\source\\repos\\webAPIreact\\webapireact\\webAPIreact.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jamorim\\source\\repos\\webAPIreact\\webAPIreact\\webAPIreact.csproj",
+        "projectUniqueName": "C:\\Users\\jamorim\\source\\repos\\webAPIreact\\webapireact\\webAPIreact.csproj",
         "projectName": "webAPIreact",
-        "projectPath": "C:\\Users\\jamorim\\source\\repos\\webAPIreact\\webAPIreact\\webAPIreact.csproj",
+        "projectPath": "C:\\Users\\jamorim\\source\\repos\\webAPIreact\\webapireact\\webAPIreact.csproj",
         "packagesPath": "C:\\Users\\jamorim\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jamorim\\source\\repos\\webAPIreact\\webAPIreact\\obj\\",
+        "outputPath": "C:\\Users\\jamorim\\source\\repos\\webAPIreact\\webapireact\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

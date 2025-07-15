@@ -25,6 +25,9 @@ namespace webAPIreact.Models
         public DbSet<ItemIssues> ItemIssuesResults { get; set; }
         public DbSet<UsersFetch> UsersFetchResults{ get; set; }
         public DbSet<Roles> RolesResults { get; set; }
+        public DbSet<Jobs> JobsResults { get; set; }
+        public DbSet<WorkWeeks> WorkWeeksResults { get; set; }
+        public DbSet<WorkWeeksNR> WorkWeeksNRResults { get; set; }
 
 }
 
@@ -73,9 +76,16 @@ namespace webAPIreact.Models
             public string? Tester { get; set; }
             public string? StartDate { get; set; }
             public string? EndDate { get; set; }
-            public string? Status { get; set; } 
+            public string? Status { get; set; }
+        public string? Ww_number  { get; set; }
+
+        public string? HipotModel { get; set; }
+        public string? HipotValue { get; set; }
+        public string? HipotMultimeterModel { get; set; }
+
+
     }
-  
+
     [Table("Users")]
     public class Users
     {
@@ -148,6 +158,41 @@ namespace webAPIreact.Models
         public string? Level_issue { get; private set; }
 
         public string? Action { get; set; } 
+    }
+
+    [Table("workweeks")]
+    public class WorkWeeks
+    {
+        [Key]
+        public int Idworkweeks { get; set; }
+        public string? Ww_number { get; set; }
+        public string? Equipment {  get; set; } 
+        public string? Quantity_need { get; set; }
+        public string? Quantity_done    { get; set; }
+        public string? Project {  get; set; }   
+    }
+
+    public class WorkWeeksNR
+    {
+        [Key]
+ 
+        public string? Ww_number { get; set; }
+    }
+
+    //JOBS//
+
+    [Table("jobs")]
+    public class Jobs
+    {
+        [Key]
+        public int Idjobs { get; set; }
+        public string? Equipment{ get; set; }
+        public string? Model { get; set; }
+        public string? QuantityDone { get; set; }
+        public string? QuantityNeed { get; set; }
+        public string? JobNumber { get; set; }
+        public string? JobProject { get; set; }
+        public int? JobDone { get; set; }    
     }
 
 }
