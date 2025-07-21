@@ -560,7 +560,7 @@ namespace webAPIreact.Controllers
             try
             {
                 _ = await _context.Database.ExecuteSqlRawAsync(
-                    "CALL newItem({0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16},{17},{18})",
+                    "CALL newItem({0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16},{17},{18},{19})",
                     prod1.Project,
                     prod1.So,
                     prod1.Equipment,
@@ -579,7 +579,8 @@ namespace webAPIreact.Controllers
                     prod1.EndDate,
                     prod1.HipotValue,
                     prod1.HipotModel,
-                    prod1.HipotMultimeterModel);
+                    prod1.HipotMultimeterModel,
+                    prod1.Ww_number);
                 return Ok(new { message = "Production inserted successfully" }); // Return success message
             }
             catch (Exception ex)
@@ -833,7 +834,33 @@ namespace webAPIreact.Controllers
         }
 
 
+
         //WORKWEEKS
+        [HttpPost("createWW")]
+        public async Task<IActionResult> CreateWW([FromBody] WorkWeeks ww)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                var result = await _context.Database.ExecuteSqlRawAsync(
+                    "CALL createWW({0},{1},{2},{3},{4})",
+                    ww.Ww_number,
+                    ww.Equipment,
+                    ww.Quantity_need,
+                    ww.Quantity_done,
+                    ww.Project
+                    );
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error" + ex.Message });
+            }
+        }
         [HttpPost("fetchWorkWeeks")]
         public async Task<IActionResult> FetchWorkWeeks([FromBody] WorkWeeks ww)
         {
@@ -866,6 +893,25 @@ namespace webAPIreact.Controllers
             {
                 var result = await _context.WorkWeeksNRResults.FromSqlRaw(
                     "CALL fetchWorkWeeksNR").ToListAsync();
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error" + ex.Message });
+            }
+        }
+        [HttpPost("fetchWorkWeeksProject")]
+        public async Task<IActionResult> FetchWorkWeeksProject([FromBody] FetchProjectsFromProduction proj)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                var result = await _context.FetchProjectsFromProductionsResults.FromSqlRaw(
+                    "CALL fetchWorkWeeksProject({0})", proj.Ww_number).ToListAsync();
 
                 return Ok(result);
             }

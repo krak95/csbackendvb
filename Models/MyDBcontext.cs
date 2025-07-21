@@ -16,6 +16,7 @@ namespace webAPIreact.Models
         }
 
         public DbSet<Production> ProductionResults { get; set; }
+        public DbSet<FetchProjectsFromProduction> FetchProjectsFromProductionsResults { get; set; }
         public DbSet<Projects> ProjectsResults { get; set; }
         public DbSet<So> SoResults { get; set; }
         public DbSet<Equipments> EquipsResults { get; set; }
@@ -57,7 +58,6 @@ namespace webAPIreact.Models
         public class Production
         {
             [Key]
-            [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
             public int Id_prod { get; set; }
             public string? Project { get; set; }
             public string? So { get; set; }
@@ -82,8 +82,13 @@ namespace webAPIreact.Models
         public string? HipotModel { get; set; }
         public string? HipotValue { get; set; }
         public string? HipotMultimeterModel { get; set; }
-
-
+    }
+    
+    public class FetchProjectsFromProduction
+    {
+        [Key]
+        public string? Project { get; set; }
+        public string? Ww_number { get; set; }
     }
 
     [Table("Users")]
@@ -168,7 +173,7 @@ namespace webAPIreact.Models
         public string? Ww_number { get; set; }
         public string? Equipment {  get; set; } 
         public string? Quantity_need { get; set; }
-        public string? Quantity_done    { get; set; }
+        public string? Quantity_done { get; set; }
         public string? Project {  get; set; }   
     }
 
@@ -179,6 +184,12 @@ namespace webAPIreact.Models
         public string? Ww_number { get; set; }
     }
 
+    public class WorkWeeksProject
+    {
+        [Key]
+        public string? Project { get; set; }
+        public string? Ww_number { get; set; }
+    }
     //JOBS//
 
     [Table("jobs")]
