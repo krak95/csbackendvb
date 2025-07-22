@@ -476,6 +476,7 @@ namespace webAPIreact.Controllers
         [HttpPost("fetchProduction")]
         public async Task<IActionResult> FetchProduction([FromBody] Production prod)
         {
+            Console.WriteLine($"{prod.Project},{prod.Ww_number}, {prod.Equipment}");
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);  // Return validation errors
@@ -483,7 +484,7 @@ namespace webAPIreact.Controllers
             try
             {
                 var results = await _context.ProductionResults.FromSqlRaw(
-                    "CALL fetchProduction({0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15})",
+                    "CALL fetchProduction({0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16})",
                     prod.Project,
                     prod.So,
                     prod.Equipment,
@@ -499,7 +500,8 @@ namespace webAPIreact.Controllers
                     prod.Type4,
                     prod.Tester,
                     prod.Status,
-                    prod.Ww_number).ToListAsync();
+                    prod.Ww_number,
+                    prod.Comment).ToListAsync();
                 return Ok(results); // ✅ Return success message
             }
             catch (Exception ex)
@@ -560,7 +562,7 @@ namespace webAPIreact.Controllers
             try
             {
                 _ = await _context.Database.ExecuteSqlRawAsync(
-                    "CALL newItem({0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16},{17},{18},{19})",
+                    "CALL newItem({0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16},{17},{18},{19},{20})",
                     prod1.Project,
                     prod1.So,
                     prod1.Equipment,
@@ -580,7 +582,8 @@ namespace webAPIreact.Controllers
                     prod1.HipotValue,
                     prod1.HipotModel,
                     prod1.HipotMultimeterModel,
-                    prod1.Ww_number);
+                    prod1.Ww_number,
+                    prod1.Comment);
                 return Ok(new { message = "Production inserted successfully" }); // Return success message
             }
             catch (Exception ex)
@@ -871,8 +874,9 @@ namespace webAPIreact.Controllers
             try
             {
                 var result = await _context.WorkWeeksResults.FromSqlRaw(
-                    "CALL fetchWorkWeeks({0})",
-                    ww.Ww_number
+                    "CALL fetchWorkWeeks({0},{1})",
+                    ww.Ww_number,
+                    ww.Project
                     ).ToListAsync();
 
                 return Ok(result);
@@ -918,6 +922,43 @@ namespace webAPIreact.Controllers
             catch (Exception ex)
             {
                 return BadRequest(new { message = "Error" + ex.Message });
+            }
+        }
+
+        [HttpPost("fetchProductionEquipCard")]
+        public async Task<IActionResult> FetchProductionEquipCard([FromBody] Production prod)
+        {
+            Console.WriteLine($"{prod.Project},{prod.Ww_number}, {prod.Equipment}");
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);  // Return validation errors
+            }
+            try
+            {
+                var results = await _context.ProductionResults.FromSqlRaw(
+                    "CALL fetchProductionEquipCard({0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16})",
+                    prod.Project,
+                    prod.So,
+                    prod.Equipment,
+                    prod.CodeA,
+                    prod.CodeB,
+                    prod.CodePR,
+                    prod.CodeDR,
+                    prod.CodePS,
+                    prod.Type0,
+                    prod.Type1,
+                    prod.Type2,
+                    prod.Type3,
+                    prod.Type4,
+                    prod.Tester,
+                    prod.Status,
+                    prod.Ww_number,
+                    prod.Comment).ToListAsync();
+                return Ok(results); // ✅ Return success message
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error: " + ex.Message }); // Return detailed error
             }
         }
 

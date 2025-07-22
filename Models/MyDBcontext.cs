@@ -78,10 +78,10 @@ namespace webAPIreact.Models
             public string? EndDate { get; set; }
             public string? Status { get; set; }
         public string? Ww_number  { get; set; }
-
         public string? HipotModel { get; set; }
         public string? HipotValue { get; set; }
         public string? HipotMultimeterModel { get; set; }
+        public string? Comment { get; set; }
     }
     
     public class FetchProjectsFromProduction
@@ -160,9 +160,9 @@ namespace webAPIreact.Models
         public string? Issue_status { get; set; }  
         public string? Ref_issue { get; set; }
         public string? Description_issue { get;set; }
-        public string? Level_issue { get; private set; }
-
+        public string? Level_issue { get; set; }
         public string? Action { get; set; } 
+
     }
 
     [Table("workweeks")]
