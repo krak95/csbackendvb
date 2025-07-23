@@ -82,6 +82,10 @@ namespace webAPIreact.Models
         public string? HipotValue { get; set; }
         public string? HipotMultimeterModel { get; set; }
         public string? Comment { get; set; }
+        public string? ChecklistStatus { get; set; }
+        public string? TraceabilityStatus { get; set; }
+
+        public string? DeploymentStatus { get; set; }
     }
     
     public class FetchProjectsFromProduction
@@ -173,7 +177,6 @@ namespace webAPIreact.Models
         public string? Ww_number { get; set; }
         public string? Equipment {  get; set; } 
         public string? Quantity_need { get; set; }
-        public string? Quantity_done { get; set; }
         public string? Project {  get; set; }   
     }
 

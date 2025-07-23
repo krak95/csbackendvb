@@ -484,7 +484,7 @@ namespace webAPIreact.Controllers
             try
             {
                 var results = await _context.ProductionResults.FromSqlRaw(
-                    "CALL fetchProduction({0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16})",
+                    "CALL fetchProduction({0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16},{17},{18},{19})",
                     prod.Project,
                     prod.So,
                     prod.Equipment,
@@ -501,7 +501,33 @@ namespace webAPIreact.Controllers
                     prod.Tester,
                     prod.Status,
                     prod.Ww_number,
-                    prod.Comment).ToListAsync();
+                    prod.Comment,
+                    prod.ChecklistStatus,
+                    prod.DeploymentStatus,
+                    prod.TraceabilityStatus
+                    ).ToListAsync();
+                return Ok(results); // ✅ Return success message
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error: " + ex.Message }); // Return detailed error
+            }
+        }
+
+        [HttpPost("fetchProductionID")]
+        public async Task<IActionResult> FetchProductionID([FromBody] Production prod)
+        {
+            Console.WriteLine($"{prod.Project},{prod.Ww_number}, {prod.Equipment}");
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);  // Return validation errors
+            }
+            try
+            {
+                var results = await _context.ProductionResults.FromSqlRaw(
+                    "CALL fetchProductionID({0})",
+                    prod.Id_prod
+                    ).ToListAsync();
                 return Ok(results); // ✅ Return success message
             }
             catch (Exception ex)
@@ -562,7 +588,7 @@ namespace webAPIreact.Controllers
             try
             {
                 _ = await _context.Database.ExecuteSqlRawAsync(
-                    "CALL newItem({0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16},{17},{18},{19},{20})",
+                    "CALL newItem({0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16},{17},{18},{19},{20},{21},{22},{23})",
                     prod1.Project,
                     prod1.So,
                     prod1.Equipment,
@@ -583,7 +609,10 @@ namespace webAPIreact.Controllers
                     prod1.HipotModel,
                     prod1.HipotMultimeterModel,
                     prod1.Ww_number,
-                    prod1.Comment);
+                    prod1.Comment,
+                    prod1.ChecklistStatus,
+                    prod1.TraceabilityStatus,
+                    prod1.DeploymentStatus);
                 return Ok(new { message = "Production inserted successfully" }); // Return success message
             }
             catch (Exception ex)
@@ -736,6 +765,77 @@ namespace webAPIreact.Controllers
             }
         }
 
+        [HttpPost("updateChecklist")]
+        public async Task<IActionResult> UpdateChecklist([FromBody] Production prod)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                var result = await _context.Database.ExecuteSqlRawAsync(
+                    "CALL updateChecklist({0},{1})",
+                    prod.Id_prod,
+                    prod.ChecklistStatus
+
+                    );
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error" + ex.Message });
+            }
+        }
+        [HttpPost("updateDeployment")]
+        public async Task<IActionResult> UpdateDeployment([FromBody] Production prod)
+        {
+            Console.WriteLine($"{prod.ChecklistStatus}, {prod.DeploymentStatus}, {prod.TraceabilityStatus}");
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                var result = await _context.Database.ExecuteSqlRawAsync(
+                    "CALL updateDeployment({0},{1})",
+                    prod.Id_prod,
+                    prod.DeploymentStatus
+
+                    );
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error" + ex.Message });
+            }
+        }
+        [HttpPost("updateTraceability")]
+        public async Task<IActionResult> UpdateTraceability([FromBody] Production prod)
+        {
+            Console.WriteLine($"{prod.ChecklistStatus}, {prod.DeploymentStatus}, {prod.TraceabilityStatus}");
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                var result = await _context.Database.ExecuteSqlRawAsync(
+                    "CALL updateTraceability({0},{1})",
+                    prod.Id_prod,
+                    prod.TraceabilityStatus
+                    );
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error" + ex.Message });
+            }
+        }
+
         [HttpPost("updateItemIssues")]
         public async Task<IActionResult> UpdateItemIssue([FromBody] ItemIssues ii)
         {
@@ -849,11 +949,10 @@ namespace webAPIreact.Controllers
             try
             {
                 var result = await _context.Database.ExecuteSqlRawAsync(
-                    "CALL createWW({0},{1},{2},{3},{4})",
+                    "CALL createWW({0},{1},{2},{3})",
                     ww.Ww_number,
                     ww.Equipment,
                     ww.Quantity_need,
-                    ww.Quantity_done,
                     ww.Project
                     );
 
@@ -916,6 +1015,28 @@ namespace webAPIreact.Controllers
             {
                 var result = await _context.FetchProjectsFromProductionsResults.FromSqlRaw(
                     "CALL fetchWorkWeeksProject({0})", proj.Ww_number).ToListAsync();
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error" + ex.Message });
+            }
+        }
+
+          
+        [HttpPost("checkWWDuplicates")]
+        public async Task<IActionResult> CheckWWDuplicates([FromBody] WorkWeeks ww)
+        {
+            Console.WriteLine($"{ww.Ww_number},{ww.Project},{ww.Equipment}");
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                var result = await _context.WorkWeeksResults.FromSqlRaw(
+                    "CALL checkWWDuplicates({0},{1},{2})", ww.Project, ww.Equipment, ww.Ww_number).ToListAsync();
 
                 return Ok(result);
             }
