@@ -588,7 +588,7 @@ namespace webAPIreact.Controllers
             try
             {
                 _ = await _context.Database.ExecuteSqlRawAsync(
-                    "CALL newItem({0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16},{17},{18},{19},{20},{21},{22},{23})",
+                    "CALL newItem({0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16},{17},{18},{19},{20})",
                     prod1.Project,
                     prod1.So,
                     prod1.Equipment,
@@ -609,10 +609,8 @@ namespace webAPIreact.Controllers
                     prod1.HipotModel,
                     prod1.HipotMultimeterModel,
                     prod1.Ww_number,
-                    prod1.Comment,
-                    prod1.ChecklistStatus,
-                    prod1.TraceabilityStatus,
-                    prod1.DeploymentStatus);
+                    prod1.Comment
+                    );
                 return Ok(new { message = "Production inserted successfully" }); // Return success message
             }
             catch (Exception ex)
@@ -1080,6 +1078,48 @@ namespace webAPIreact.Controllers
             catch (Exception ex)
             {
                 return BadRequest(new { message = "Error: " + ex.Message }); // Return detailed error
+            }
+        }
+
+        [HttpPost("updateWWStatus")]
+        public async Task<IActionResult> FetchBackLog([FromBody] WorkWeeks ww)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                var result = await _context.Database.ExecuteSqlRawAsync(
+                    "CALL updateWWStatus({0},{1})", ww.Idworkweeks,ww.Status1);
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error" + ex.Message });
+            }
+        }
+
+        [HttpPost("fetchBacklog")]
+        public async Task<IActionResult> FetchBacklog([FromBody] WorkWeeks ww)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                var result = await _context.WorkWeeksResults.FromSqlRaw(
+                    "CALL fetchBacklog({0})",
+                    ww.Ww_number
+                    ).ToListAsync();
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error" + ex.Message });
             }
         }
 

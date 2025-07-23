@@ -84,7 +84,6 @@ namespace webAPIreact.Models
         public string? Comment { get; set; }
         public string? ChecklistStatus { get; set; }
         public string? TraceabilityStatus { get; set; }
-
         public string? DeploymentStatus { get; set; }
     }
     
@@ -177,7 +176,9 @@ namespace webAPIreact.Models
         public string? Ww_number { get; set; }
         public string? Equipment {  get; set; } 
         public string? Quantity_need { get; set; }
-        public string? Project {  get; set; }   
+        public string? Project {  get; set; }
+        public string? Backlog { get; set; }    
+        public string? Status1 { get; set; }
     }
 
     public class WorkWeeksNR
