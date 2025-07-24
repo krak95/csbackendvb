@@ -194,8 +194,8 @@ namespace webAPIreact.Models
         public string? Project { get; set; }
         public string? Ww_number { get; set; }
     }
-    //JOBS//
 
+    //JOBS//
     [Table("jobs")]
     public class Jobs
     {
@@ -209,7 +209,6 @@ namespace webAPIreact.Models
         public string? JobProject { get; set; }
         public int? JobDone { get; set; }    
     }
-
 }
 
 

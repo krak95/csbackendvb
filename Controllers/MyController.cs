@@ -1081,6 +1081,43 @@ namespace webAPIreact.Controllers
             }
         }
 
+        [HttpPost("fetchProductionEquipCardWaitingDocs")]
+        public async Task<IActionResult> FetchProductionEquipCardWaitingDocs([FromBody] Production prod)
+        {
+            Console.WriteLine($"{prod.Project},{prod.Ww_number}, {prod.Equipment}");
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);  // Return validation errors
+            }
+            try
+            {
+                var results = await _context.ProductionResults.FromSqlRaw(
+                    "CALL fetchProductionEquipCardWaitingDocs({0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16})",
+                    prod.Project,
+                    prod.So,
+                    prod.Equipment,
+                    prod.CodeA,
+                    prod.CodeB,
+                    prod.CodePR,
+                    prod.CodeDR,
+                    prod.CodePS,
+                    prod.Type0,
+                    prod.Type1,
+                    prod.Type2,
+                    prod.Type3,
+                    prod.Type4,
+                    prod.Tester,
+                    prod.Status,
+                    prod.Ww_number,
+                    prod.Comment).ToListAsync();
+                return Ok(results); // ✅ Return success message
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error: " + ex.Message }); // Return detailed error
+            }
+        }
+
         [HttpPost("updateWWStatus")]
         public async Task<IActionResult> FetchBackLog([FromBody] WorkWeeks ww)
         {
