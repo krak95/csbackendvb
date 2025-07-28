@@ -1,0 +1,716 @@
+[
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "NewItemIssue",
+    "RelativePath": "api/My/addItemIssue",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "itemissue",
+        "Type": "webAPIreact.Models.ItemIssues",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "AddJob",
+    "RelativePath": "api/My/addJob",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "job",
+        "Type": "webAPIreact.Models.Jobs",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "AssignRoles",
+    "RelativePath": "api/My/assignRoles",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "user",
+        "Type": "webAPIreact.Models.Users",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "CheckCreds",
+    "RelativePath": "api/My/checkCreds",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "user",
+        "Type": "webAPIreact.Models.Users",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "CheckLogin",
+    "RelativePath": "api/My/checkLogin",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "log",
+        "Type": "webAPIreact.Models.Login",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "CheckProduction",
+    "RelativePath": "api/My/checkProduction",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "prod",
+        "Type": "webAPIreact.Models.Production",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "CheckWWDuplicates",
+    "RelativePath": "api/My/checkWWDuplicates",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ww",
+        "Type": "webAPIreact.Models.WorkWeeks",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "CreateWW",
+    "RelativePath": "api/My/createWW",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ww",
+        "Type": "webAPIreact.Models.WorkWeeks",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "DeleteEquip",
+    "RelativePath": "api/My/delEquip",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "equip",
+        "Type": "webAPIreact.Models.Equipments",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "DeleteItemIssues",
+    "RelativePath": "api/My/deleteItemIssues",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ii",
+        "Type": "webAPIreact.Models.ItemIssues",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "DeleteProject",
+    "RelativePath": "api/My/deleteProject",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "proj",
+        "Type": "webAPIreact.Models.Projects",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "DeleteSO",
+    "RelativePath": "api/My/deleteSO",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "so",
+        "Type": "webAPIreact.Models.So",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "DeleteEquip",
+    "RelativePath": "api/My/delIssues",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "issue",
+        "Type": "webAPIreact.Models.Issues",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "DeleteProduction",
+    "RelativePath": "api/My/delProd",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "prod",
+        "Type": "webAPIreact.Models.Production",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "FetchBacklog",
+    "RelativePath": "api/My/fetchBacklog",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ww",
+        "Type": "webAPIreact.Models.WorkWeeks",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "FetchEquipments",
+    "RelativePath": "api/My/fetchEquipments",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "equips",
+        "Type": "webAPIreact.Models.Equipments",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "FetchIssues",
+    "RelativePath": "api/My/fetchIssues",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "issue",
+        "Type": "webAPIreact.Models.Issues",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "FetchItemIssues",
+    "RelativePath": "api/My/fetchItemIssues",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ii",
+        "Type": "webAPIreact.Models.ItemIssues",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "FetchJobs",
+    "RelativePath": "api/My/fetchJobs",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "job",
+        "Type": "webAPIreact.Models.Jobs",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "FetchProduction",
+    "RelativePath": "api/My/fetchProduction",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "prod",
+        "Type": "webAPIreact.Models.Production",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "FetchProductionEquipCard",
+    "RelativePath": "api/My/fetchProductionEquipCard",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "prod",
+        "Type": "webAPIreact.Models.Production",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "FetchProductionEquipCardWaitingDocs",
+    "RelativePath": "api/My/fetchProductionEquipCardWaitingDocs",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "prod",
+        "Type": "webAPIreact.Models.Production",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "FetchProductionID",
+    "RelativePath": "api/My/fetchProductionID",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "prod",
+        "Type": "webAPIreact.Models.Production",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "FetchProjects",
+    "RelativePath": "api/My/fetchProjects",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "proj",
+        "Type": "webAPIreact.Models.Projects",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "FetchRoles",
+    "RelativePath": "api/My/fetchRoles",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "role",
+        "Type": "webAPIreact.Models.Roles",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "FetchSO",
+    "RelativePath": "api/My/fetchSO",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "so1",
+        "Type": "webAPIreact.Models.So",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "FetchUsers",
+    "RelativePath": "api/My/fetchUsers",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "user",
+        "Type": "webAPIreact.Models.UsersFetch",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "FetchWorkWeeks",
+    "RelativePath": "api/My/fetchWorkWeeks",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ww",
+        "Type": "webAPIreact.Models.WorkWeeks",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "FetchWorkWeeksNR",
+    "RelativePath": "api/My/fetchWorkWeeksNR",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "FetchWorkWeeksProject",
+    "RelativePath": "api/My/fetchWorkWeeksProject",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "proj",
+        "Type": "webAPIreact.Models.FetchProjectsFromProduction",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "Logout",
+    "RelativePath": "api/My/Logout",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "log",
+        "Type": "webAPIreact.Models.Login",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "NewEquipments",
+    "RelativePath": "api/My/newEquipments",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "equip",
+        "Type": "webAPIreact.Models.Equipments",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "NewIssue",
+    "RelativePath": "api/My/newIssue",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "issue",
+        "Type": "webAPIreact.Models.Issues",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "NewLogin",
+    "RelativePath": "api/My/newLogin",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "user",
+        "Type": "webAPIreact.Models.Login",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "NewProduction",
+    "RelativePath": "api/My/newProduction",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "prod1",
+        "Type": "webAPIreact.Models.Production",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "NewProjectC",
+    "RelativePath": "api/My/newProjects1",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "proj",
+        "Type": "webAPIreact.Models.Projects",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "NewSO",
+    "RelativePath": "api/My/newSO",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "so1",
+        "Type": "webAPIreact.Models.So",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "RefreshLog",
+    "RelativePath": "api/My/refreshLog",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "log",
+        "Type": "webAPIreact.Models.Login",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "NewUsers",
+    "RelativePath": "api/My/Register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "user",
+        "Type": "webAPIreact.Models.Users",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "UpdateChecklist",
+    "RelativePath": "api/My/updateChecklist",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "prod",
+        "Type": "webAPIreact.Models.Production",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "UpdateDeployment",
+    "RelativePath": "api/My/updateDeployment",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "prod",
+        "Type": "webAPIreact.Models.Production",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "UpdateItemIssue",
+    "RelativePath": "api/My/updateItemIssues",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ii",
+        "Type": "webAPIreact.Models.ItemIssues",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "UpdateStatus",
+    "RelativePath": "api/My/updateStatus",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "prod1",
+        "Type": "webAPIreact.Models.Production",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "UpdateTraceability",
+    "RelativePath": "api/My/updateTraceability",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "prod",
+        "Type": "webAPIreact.Models.Production",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "webAPIreact.Controllers.MyController",
+    "Method": "FetchBackLog",
+    "RelativePath": "api/My/updateWWStatus",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ww",
+        "Type": "webAPIreact.Models.WorkWeeks",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

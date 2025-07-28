@@ -71,6 +71,8 @@ public class Program
             }
         });
 
+
+        builder.WebHost.UseUrls("http://10.76.76.44:5000");
         //app.UseWebSockets();
         //var webSocketHandler = new WebSocketHandler();
         //app.UseWebSockets();
