@@ -686,9 +686,6 @@ namespace webAPIreact.Controllers
                 return BadRequest(new { message = "Error: " + ex.Message }); // Return detailed error
             }
         }
-
-       
-
        
 //ISSUES//
         [HttpPost("delIssues")]
@@ -712,7 +709,7 @@ namespace webAPIreact.Controllers
                 return BadRequest(new { message = "Error" + ex.Message });
             }
         }
-       
+
         [HttpPost("newIssue")]
         public async Task<IActionResult> NewIssue([FromBody] Issues issue)
         {
