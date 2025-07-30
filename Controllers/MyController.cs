@@ -620,6 +620,48 @@ namespace webAPIreact.Controllers
                 return BadRequest(new { message = "Error: " + ex.Message }); // Return detailed error
             }
         }
+        [HttpPost("updateItem")]
+        public async Task<IActionResult> UpdateItem([FromBody] Production prod1)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);  // Return validation errors
+            }
+            Console.WriteLine($"HIPOTVAL:{prod1.HipotValue}");
+            try
+            {
+                _ = await _context.Database.ExecuteSqlRawAsync(
+                    "CALL updateItem({0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16},{17},{18},{19},{20},{21})",
+                    prod1.Id_prod,
+                    prod1.Project,
+                    prod1.So,
+                    prod1.Equipment,
+                    prod1.CodeA,
+                    prod1.CodeB,
+                    prod1.CodePR,
+                    prod1.CodeDR,
+                    prod1.CodePS,
+                    prod1.Type0,
+                    prod1.Type1,
+                    prod1.Type2,
+                    prod1.Type3,
+                    prod1.Type4,
+                    prod1.Tester,
+                    prod1.StartDate,
+                    prod1.EndDate,
+                    prod1.HipotValue,
+                    prod1.HipotModel,
+                    prod1.HipotMultimeterModel,
+                    prod1.Ww_number,
+                    prod1.Comment
+                    );
+                return Ok(new { message = "Production updated successfully" }); // Return success message
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error: " + ex.Message }); // Return detailed error
+            }
+        }
 
         [HttpPost("delProd")]
         public async Task<IActionResult> DeleteProduction([FromBody] Production prod)

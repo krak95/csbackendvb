@@ -160,14 +160,12 @@ namespace webAPIreact.Models
         public int? Id_issue { get; set; }
         public int? Id_item { get; set; }
         public string? Comment { get;set; }
-        public string? Issue_status { get; set; }  
+        public string? Issue_status { get; set; }
         public string? Ref_issue { get; set; }
         public string? Description_issue { get;set; }
         public string? Level_issue { get; set; }
-        public string? Action { get; set; } 
-
+        public string? Action { get; set; }
     }
-
     [Table("workweeks")]
     public class WorkWeeks
     {
@@ -184,7 +182,6 @@ namespace webAPIreact.Models
     public class WorkWeeksNR
     {
         [Key]
- 
         public string? Ww_number { get; set; }
     }
 
@@ -194,7 +191,6 @@ namespace webAPIreact.Models
         public string? Project { get; set; }
         public string? Ww_number { get; set; }
     }
-
     //JOBS//
     [Table("jobs")]
     public class Jobs
