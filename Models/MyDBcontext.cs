@@ -58,25 +58,25 @@ namespace webAPIreact.Models
         public class Production
         {
             [Key]
-            public int Id_prod { get; set; }
-            public string? Project { get; set; }
-            public string? So { get; set; }
-            public string? Equipment { get; set; }
-            public string? CodeA { get; set; }
-            public string? CodeB { get; set; }
-            public string? CodePR { get; set; }
-            public string? CodeDR { get; set; }
-            public string? CodePS { get; set; }
-            public string? Type0 { get; set; }
-            public string? Type1 { get; set; }
-            public string? Type2 { get; set; }
-            public string? Type3 { get; set; }
-            public string? Type4 { get; set; }
-            public string? ReadyPQA { get; set; }
-            public string? Tester { get; set; }
-            public string? StartDate { get; set; }
-            public string? EndDate { get; set; }
-            public string? Status { get; set; }
+        public int Id_prod { get; set; }
+        public string? Project { get; set; }
+        public string? So { get; set; }
+        public string? Equipment { get; set; }
+        public string? CodeA { get; set; }
+        public string? CodeB { get; set; }
+        public string? CodePR { get; set; }
+        public string? CodeDR { get; set; }
+        public string? CodePS { get; set; }
+        public string? Type0 { get; set; }
+        public string? Type1 { get; set; }
+        public string? Type2 { get; set; }
+        public string? Type3 { get; set; }
+        public string? Type4 { get; set; }
+        public string? ReadyPQA { get; set; }
+        public string? Tester { get; set; }
+        public string? StartDate { get; set; }
+        public string? EndDate { get; set; }
+        public string? Status { get; set; }
         public string? Ww_number  { get; set; }
         public string? HipotModel { get; set; }
         public string? HipotValue { get; set; }
