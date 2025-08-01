@@ -3,7 +3,6 @@ using Microsoft.IdentityModel.Tokens;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Claims;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 namespace webAPIreact.Models
@@ -57,7 +56,7 @@ namespace webAPIreact.Models
     [Table("Production")]
         public class Production
         {
-            [Key]
+        [Key]
         public int Id_prod { get; set; }
         public string? Project { get; set; }
         public string? So { get; set; }
@@ -128,28 +127,28 @@ namespace webAPIreact.Models
     [Table("So")]
     public class So
     {
-        [Key]
-        public int IdSO { get; set; }
-        public string? SOref { get; set; }
-        public string? Project { get; set; }
+    [Key]
+    public int IdSO { get; set; }
+    public string? SOref { get; set; }
+    public string? Project { get; set; }
     }
 
     [Table("Equipments")]
     public class Equipments
     {
-        [Key]
-        public int Idequipments { get; set; }
-        public string? EquipName { get; set; }
+    [Key]
+    public int Idequipments { get; set; }
+    public string? EquipName { get; set; }
     }
 
     [Table("Issues")]
     public class Issues
     {
-        [Key]
-        public int Id_issues { get; set; }
-        public string? Ref_issue { get; set; }
-        public string? Description_issue { get; set; }
-        public string? Level_issue  { get; set; }   
+    [Key]
+    public int Id_issues { get; set; }
+    public string? Ref_issue { get; set; }
+    public string? Description_issue { get; set; }
+    public string? Level_issue  { get; set; }   
     }
 
     [Table("item_issues")]
