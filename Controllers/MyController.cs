@@ -620,7 +620,7 @@ namespace webAPIreact.Controllers
                 return BadRequest(new { message = "Error: " + ex.Message }); // Return detailed error
             }
         }
-        [HttpPost("updateItem")]
+        [HttpPost("updateItemcd webapu")]
         public async Task<IActionResult> UpdateItem([FromBody] Production prod1)
         {
             if (!ModelState.IsValid)

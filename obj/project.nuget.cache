@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XQU2I2NvAqk=",
+  "dgSpecHash": "fYPMEPuzyew=",
   "success": true,
-  "projectFilePath": "C:\\Users\\jamorim\\source\\repos\\webAPIreact\\webAPIreact\\webAPIreact.csproj",
+  "projectFilePath": "C:\\Users\\jamorim\\source\\repos\\webAPIreact\\webapireact\\webAPIreact.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jamorim\\.nuget\\packages\\aforge\\2.2.5\\aforge.2.2.5.nupkg.sha512",
     "C:\\Users\\jamorim\\.nuget\\packages\\aforge.video\\2.2.5\\aforge.video.2.2.5.nupkg.sha512",
@@ -210,9 +210,9 @@
       "code": "NU1701",
       "level": "Warning",
       "message": "Package 'AForge 2.2.5' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net9.0'. This package may not be fully compatible with your project.",
-      "projectPath": "C:\\Users\\jamorim\\source\\repos\\webAPIreact\\webAPIreact\\webAPIreact.csproj",
+      "projectPath": "C:\\Users\\jamorim\\source\\repos\\webAPIreact\\webapireact\\webAPIreact.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\Users\\jamorim\\source\\repos\\webAPIreact\\webAPIreact\\webAPIreact.csproj",
+      "filePath": "C:\\Users\\jamorim\\source\\repos\\webAPIreact\\webapireact\\webAPIreact.csproj",
       "libraryId": "AForge",
       "targetGraphs": [
         "net9.0"
@@ -222,9 +222,9 @@
       "code": "NU1701",
       "level": "Warning",
       "message": "Package 'AForge.Video 2.2.5' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net9.0'. This package may not be fully compatible with your project.",
-      "projectPath": "C:\\Users\\jamorim\\source\\repos\\webAPIreact\\webAPIreact\\webAPIreact.csproj",
+      "projectPath": "C:\\Users\\jamorim\\source\\repos\\webAPIreact\\webapireact\\webAPIreact.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\Users\\jamorim\\source\\repos\\webAPIreact\\webAPIreact\\webAPIreact.csproj",
+      "filePath": "C:\\Users\\jamorim\\source\\repos\\webAPIreact\\webapireact\\webAPIreact.csproj",
       "libraryId": "AForge.Video",
       "targetGraphs": [
         "net9.0"
@@ -234,9 +234,9 @@
       "code": "NU1701",
       "level": "Warning",
       "message": "Package 'AForge.Video.DirectShow 2.2.5' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net9.0'. This package may not be fully compatible with your project.",
-      "projectPath": "C:\\Users\\jamorim\\source\\repos\\webAPIreact\\webAPIreact\\webAPIreact.csproj",
+      "projectPath": "C:\\Users\\jamorim\\source\\repos\\webAPIreact\\webapireact\\webAPIreact.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\Users\\jamorim\\source\\repos\\webAPIreact\\webAPIreact\\webAPIreact.csproj",
+      "filePath": "C:\\Users\\jamorim\\source\\repos\\webAPIreact\\webapireact\\webAPIreact.csproj",
       "libraryId": "AForge.Video.DirectShow",
       "targetGraphs": [
         "net9.0"
