@@ -20,7 +20,7 @@ namespace webAPIreact.Models
         public DbSet<So> SoResults { get; set; }
         public DbSet<Equipments> EquipsResults { get; set; }
         public DbSet<Users> UsersRegister { get; set; }
-        public DbSet<Login> LoginResults { get; set; } 
+        public DbSet<Login> LoginResults { get; set; }
         public DbSet<Issues> IssuesResults { get; set; }
         public DbSet<ItemIssues> ItemIssuesResults { get; set; }
         public DbSet<UsersFetch> UsersFetchResults{ get; set; }
@@ -28,7 +28,7 @@ namespace webAPIreact.Models
         public DbSet<Jobs> JobsResults { get; set; }
         public DbSet<WorkWeeks> WorkWeeksResults { get; set; }
         public DbSet<WorkWeeksNR> WorkWeeksNRResults { get; set; }
-
+        public DbSet<ChecklistsTemplate> ChecklistsTemplateResult { get; set; }
 }
 
     //MYSQL TABLES
@@ -190,6 +190,33 @@ namespace webAPIreact.Models
         public string? Project { get; set; }
         public string? Ww_number { get; set; }
     }
+
+    [Table("ChecklistsTemplate")]
+    public class ChecklistsTemplate
+    {
+        [Key]
+        public int IdchecklistsTemplate { get; set; }
+        public string? Project { get; set; }
+        public string? Equipment { get; set; }
+        public string? Action { get; set; }
+        public string? Type0 { get; set; }
+        public string? Type1 { get; set; }
+        public string? Type2 { get; set; }
+        public string? Type3 { get; set; }
+        public string? Type4 { get; set; }
+    }
+
+    [Table("Checklists")]
+    public class Checklists
+    {
+        [Key]
+        public int Idchecklists { get; set; }
+        public int? ChecklistsTemplate { get; set; }
+        public int? Production { get; set; }
+        public string? Status { get; set; }
+    }
+
+
     //JOBS//
     [Table("jobs")]
     public class Jobs

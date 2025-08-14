@@ -28,7 +28,7 @@ namespace webAPIreact.Controllers
             _passwordHasher = passwordHasher;
         }
 
-//LOGIN//
+        //LOGIN//
 
         [HttpPost("checkCreds")]
         public async Task<IActionResult> CheckCreds([FromBody] Users user)
@@ -198,7 +198,7 @@ namespace webAPIreact.Controllers
             }
         }
 
-//USERS//
+        //USERS//
 
         [HttpPost("fetchUsers")]
         public async Task<IActionResult> FetchUsers([FromBody] UsersFetch user)
@@ -241,7 +241,7 @@ namespace webAPIreact.Controllers
             }
         }
 
-//ADMIN//
+        //ADMIN//
         [HttpPost("assignRoles")]
         public async Task<IActionResult> AssignRoles([FromBody] Users user)
         {
@@ -264,7 +264,7 @@ namespace webAPIreact.Controllers
             }
         }
 
-//EQUIPMENTS//
+        //EQUIPMENTS//
 
         [HttpPost("newEquipments")]
         public async Task<IActionResult> NewEquipments([FromBody] Equipments equip)
@@ -298,7 +298,7 @@ namespace webAPIreact.Controllers
             try
             {
                 var results = await _context.EquipsResults.FromSqlRaw(
-                    "CALL fetchEquipments({0})",equips.EquipName).ToListAsync();
+                    "CALL fetchEquipments({0})", equips.EquipName).ToListAsync();
                 return Ok(results); // Return success message
             }
             catch (Exception ex)
@@ -328,7 +328,7 @@ namespace webAPIreact.Controllers
             }
         }
 
-//PROJECTS//
+        //PROJECTS//
         [HttpPost("fetchProjects")]
         public async Task<IActionResult> FetchProjects([FromBody] Projects proj)
         {
@@ -402,7 +402,7 @@ namespace webAPIreact.Controllers
         }
 
 
-//SO//
+        //SO//
         [HttpPost("newSO")]
         public async Task<IActionResult> NewSO([FromBody] So so1)
         {
@@ -514,7 +514,7 @@ namespace webAPIreact.Controllers
             }
         }
 
-       
+
 
         [HttpPost("fetchProductionID")]
         public async Task<IActionResult> FetchProductionID([FromBody] Production prod)
@@ -620,7 +620,7 @@ namespace webAPIreact.Controllers
                 return BadRequest(new { message = "Error: " + ex.Message }); // Return detailed error
             }
         }
-        [HttpPost("updateItemcd webapu")]
+        [HttpPost("updateItem")]
         public async Task<IActionResult> UpdateItem([FromBody] Production prod1)
         {
             if (!ModelState.IsValid)
@@ -678,7 +678,7 @@ namespace webAPIreact.Controllers
                     prod.Id_prod,
                     prod.Tester);
 
-                
+
                 return Ok(result); // Return success message
             }
             catch (Exception ex)
@@ -686,8 +686,8 @@ namespace webAPIreact.Controllers
                 return BadRequest(new { message = "Error: " + ex.Message }); // Return detailed error
             }
         }
-       
-//ISSUES//
+
+        //ISSUES//
         [HttpPost("delIssues")]
         public async Task<IActionResult> DeleteEquip([FromBody] Issues issue)
         {
@@ -751,7 +751,7 @@ namespace webAPIreact.Controllers
 
                 return Ok(result);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(new { message = "Error" + ex.Message });
             }
@@ -1063,7 +1063,7 @@ namespace webAPIreact.Controllers
             }
         }
 
-          
+
         [HttpPost("checkWWDuplicates")]
         public async Task<IActionResult> CheckWWDuplicates([FromBody] WorkWeeks ww)
         {
@@ -1169,7 +1169,7 @@ namespace webAPIreact.Controllers
             try
             {
                 var result = await _context.Database.ExecuteSqlRawAsync(
-                    "CALL updateWWStatus({0},{1})", ww.Idworkweeks,ww.Status1);
+                    "CALL updateWWStatus({0},{1})", ww.Idworkweeks, ww.Status1);
 
                 return Ok(result);
             }
@@ -1193,6 +1193,89 @@ namespace webAPIreact.Controllers
                     ww.Ww_number
                     ).ToListAsync();
 
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error" + ex.Message });
+            }
+        }
+
+        //CHECKLISTS//
+        [HttpPost("createChecklistsTemplate")]
+        public async Task<IActionResult> CreateChecklistsTemplate([FromBody] ChecklistsTemplate check)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                var result = await _context.Database.ExecuteSqlRawAsync(
+                    "CALL createChecklistsTemplate({0},{1},{2},{3},{4},{5},{6},{7})",
+                    check.Project,
+                    check.Equipment,
+                    check.Action,
+                    check.Type0,
+                    check.Type1,
+                    check.Type2,
+                    check.Type3,
+                    check.Type4
+                    );
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error" + ex.Message });
+            }
+        }
+
+        [HttpPost("fetchChecklistsTemplate")]
+        public async Task<IActionResult> FetchChecklistsTemplate([FromBody] ChecklistsTemplate check)
+        {
+            Console.WriteLine($"Project:{check.Project}");
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                var result = await _context.ChecklistsTemplateResult.FromSqlRaw(
+                    "CALL fetchChecklistsTemplate({0},{1},{2},{3},{4},{5},{6})",
+                    check.Project,
+                    check.Equipment,
+                    check.Type0,
+                    check.Type1,
+                    check.Type2,
+                    check.Type3,
+                    check.Type4
+                    ).ToListAsync();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error" + ex.Message });
+
+            }
+        }
+
+        [HttpPost("createChecklist")]
+        public async Task<IActionResult> CreateChecklist([FromBody] Checklists check)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                var result = await _context.Database.ExecuteSqlRawAsync(
+                    "CALL createChecklist({0},{1},{2})",
+                        check.ChecklistsTemplate,
+                        check.Production,
+                        check.Status
+                    );
                 return Ok(result);
             }
             catch (Exception ex)
